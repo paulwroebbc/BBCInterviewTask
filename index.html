@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="content-language" content="en" />
+		<meta http-equiv="Content-Type" content="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<!-- CSS -->
+		<link href="main.css" media="all" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+
+		<!-- Table -->
+		<h2>Monthly BBC Broadcasts</h2>
+		<p>Monthly number of broadcasts per BBC channel for the year 2009.</p>
+		<div id="table"></div>
+
+		<!-- Visualization -->
+		<h2>Visualization</h2>
+		<p>Click a date above to show visualization.</p>
+		<div id="visualization"></div>
+		
+		<!-- JS -->
+		<script src="jquery-2.1.1.js"></script>
+		<script src="BBC.js"></script>
+		<script type="text/javascript">
+		//	AJAX request for JSON data
+		$.getJSON( 'data.json', function (data) {
+    		
+    		//	Container element for table
+    		var table = document.getElementById( 'table' );
+    		
+    		//	Initialize new BBBC object
+    		var myBBC = new BBC( table, data );
+
+    		//	Set object property to display visualizations
+    		myBBC.chartContainer = document.getElementById( 'visualization' );
+
+    		//	Build HTML table
+    		myBBC.buildTable();
+
+		});
+		</script>
+
+	</body>
+</html>
